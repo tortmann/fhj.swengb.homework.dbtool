@@ -1,0 +1,33 @@
+// TABLE Artikel
+
+artnr,  bezeichnung,    preis
+1,      Apfel,          0.5
+2,      Banane,         0.8
+3,      Birne,          1.0
+4,      Kiwi,           1.2
+
+
+// TABLE Bestellungen
+
+bestnr, kdnr,   datum
+100,    1,      2015-01-01 08:00:00
+101,    1,      2015-01-02 09:00:00
+102,    2,      2015-01-03 10:00:00
+
+//TABLE Bestellpositionen
+
+bestnr, pos,    artikel,    text,       menge,  preis
+100,    1,      1,          Apfel,      5,      0.5
+100,    2,      2,          Banane,     1,      0.8
+100,    3,      3,          Kiwi,       3,      1.2
+
+101,    1,      1,          Apfel,      2,      0.5
+101,    2,      2,          Birne,      9,      1.0
+
+102,    1,      1,          Apfel,      1,      0.5
+
+// TABLE Kunden
+
+kdnr,   nachname,   vorname
+1,      Maier,      Franz
+2,      Huber,      Sepp
