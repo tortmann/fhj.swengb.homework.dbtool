@@ -28,22 +28,23 @@ object dbTool {
 
 class dbTool extends javafx.application.Application {
 
-  val Fxml = "/fhj/swengb/homework/dbtool/dbtool.fxml"
+  val fxml = "/fhj/swengb/homework/dbtool/dbtool.fxml"
+  val css = "/fhj/swengb/homework/dbtool/dbtool.fxml"
 
-  val loader = new FXMLLoader(getClass.getResource(Fxml))
+  val loader = new FXMLLoader(getClass.getResource(fxml))
 
-  override def start(stage: Stage): Unit = try {
-    stage.setTitle("Fruit Store - Database")
-    loader.load[Parent]()
-    val scene = new Scene(loader.getRoot[Parent])
-    stage.setScene(scene)
-    stage.show()
 
-  } catch {
-    case NonFatal(e) => {
-      e.printStackTrace()
+  override def start(stage: Stage): Unit =
+    try {
+      stage.setTitle("Fruit Store - DB_Tool")
+      loader.load[Parent]() // side effect
+      val scene = new Scene(loader.getRoot[Parent])
+      stage.setScene(scene)
+      stage.getScene.getStylesheets.add(css)
+      stage.show()
+    } catch {
+      case NonFatal(e) => e.printStackTrace()
     }
-  }
 
 }
 
