@@ -3,6 +3,7 @@ package fhj.swengb.homework.dbtool
 import java.sql.{Connection, DriverManager, ResultSet, Statement}
 
 import fhj.swengb.Person._
+import fhj.swengb.homework.dbtool.Article
 import fhj.swengb.{Person, Students}
 
 import scala.util.Try
@@ -78,7 +79,7 @@ object Db {
   }
 
   lazy val maybeConnection: Try[Connection] =
-    Try(DriverManager.getConnection("jdbc:sqlite:./db_database.csv"))
+    Try(DriverManager.getConnection("jdbc:sqlite::memory:"))
 
 }
 
