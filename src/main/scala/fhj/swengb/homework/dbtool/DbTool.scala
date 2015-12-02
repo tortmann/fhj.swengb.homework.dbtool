@@ -1,6 +1,10 @@
 package fhj.swengb.homework.dbtool
 
 import java.sql.{Connection, DriverManager, ResultSet, Statement}
+import javafx.application.Application
+import javafx.fxml.FXMLLoader
+import javafx.scene.{Scene, Parent}
+import javafx.stage.Stage
 
 import fhj.swengb.Person._
 import fhj.swengb.homework.dbtool.Article
@@ -8,6 +12,7 @@ import fhj.swengb.{Person, Students}
 
 import scala.collection.mutable.ListBuffer
 import scala.util.Try
+import scala.util.control.NonFatal
 
 /**
   * Example to connect to a database.
@@ -15,6 +20,33 @@ import scala.util.Try
   * Initializes the database, inserts example data and reads it again.
   *
   */
+object dbTool {
+  def main(args: Array[String]) {
+    Application.launch(classOf[dbTool], args: _*)
+  }
+}
+
+class dbTool extends javafx.application.Application {
+
+  val Fxml = "/fhj/swengb/homework/dbtool/dbtool.fxml"
+
+  val loader = new FXMLLoader(getClass.getResource(Fxml))
+
+  override def start(stage: Stage): Unit = try {
+    stage.setTitle("Fruit Store - Database")
+    loader.load[Parent]()
+    val scene = new Scene(loader.getRoot[Parent])
+    stage.setScene(scene)
+    stage.show()
+
+  } catch {
+    case NonFatal(e) => {
+      e.printStackTrace()
+    }
+  }
+
+}
+
 object Db {
 
   /**
