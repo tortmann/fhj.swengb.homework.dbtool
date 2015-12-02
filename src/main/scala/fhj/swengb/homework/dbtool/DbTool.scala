@@ -6,6 +6,7 @@ import fhj.swengb.Person._
 import fhj.swengb.homework.dbtool.Article
 import fhj.swengb.{Person, Students}
 
+import scala.collection.mutable.ListBuffer
 import scala.util.Try
 
 /**
@@ -112,6 +113,31 @@ case class Article(artnr : Int, description :  String, price : Double) extends D
   def createTableSql: String = "create table article (artnr integer, description string, price double)"
   def insertSql: String = "insert into article (artnr, desc, price) VALUES (?, ?, ?)"
 
+}
+
+
+case class Customer(cNr : Int, firstName: String, lastName : String) extends Db.DbEntity[Customer] {
+  def toDb(c: Connection)(cu: Customer) : Int = {
+    val pstmt = c.prepareStatement(insertSql)
+    pstmt.setInt(1, cu.cNr)
+    pstmt.setString(2, cu.firstName)
+    pstmt.setString(3, cu.lastName)
+    pstmt.executeUpdate()
+  }
+
+  def fromDb(rs: ResultSet): List[Customer] = {
+    val lb : ListBuffer[Customer] = new ListBuffer[Customer]()
+    while (rs.next()) lb.append(Customer(rs.getInt("cNr"), rs.getString("firstName"), rs.getString("lastName")))
+    lb.toList
+  }
+
+  def reTable(stmt: Statement) : Int = {
+    stmt.executeUpdate(dropTableSql)
+    stmt.executeUpdate(createTableSql)
+  }
+  def dropTableSql: String = "drop table if exists customer"
+  def createTableSql: String = "create table customer (cnr Int, firstName String, lastName String)"
+  def insertSql: String = "insert into customer (cNr, firstName, lastName) VALUES (?, ?, ?, ?)"
 }
 
 case class OrderPosition(ordnr : Int, pos :  Int, article : Int, text: String,amount : Int, price: Double) extends Db.DbEntity[OrderPosition] {
