@@ -86,22 +86,16 @@ object Db {
 
 case class Employee(firstName: String) extends Db.DbEntity[Employee] {
 
-  // this
   def reTable(stmt: Statement): Int = 0
 
   def toDb(c: Connection)(t: Employee): Int = 0
 
   def fromDb(rs: ResultSet): List[Employee] = List()
 
-
-  // this
   def dropTableSql: String = ""
 
-  // this
   def createTableSql: String = ""
 
-
-  //this
   def insertSql: String = ""
 
 }

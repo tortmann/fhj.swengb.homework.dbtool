@@ -1,33 +1,33 @@
-// TABLE Artikel
+// TABLE Article
 
-artnr,  bezeichnung,    preis
-1,      Apfel,          0.5
-2,      Banane,         0.8
-3,      Birne,          1.0
+artnr,  description,    price
+1,      apple,          0.5
+2,      banana,         0.8
+3,      pear,           1.0
 4,      Kiwi,           1.2
 
 
-// TABLE Bestellungen
+// TABLE Order
 
-bestnr, kdnr,   datum
+ordnr, kdnr,   date
 100,    1,      2015-01-01 08:00:00
 101,    1,      2015-01-02 09:00:00
 102,    2,      2015-01-03 10:00:00
 
-//TABLE Bestellpositionen
+//TABLE Order position
 
-bestnr, pos,    artikel,    text,       menge,  preis
-100,    1,      1,          Apfel,      5,      0.5
-100,    2,      2,          Banane,     1,      0.8
-100,    3,      3,          Kiwi,       3,      1.2
+ordnr, pos,    article,     text,       amount,     price
+100,    1,      1,          apple,      5,          0.5
+100,    2,      2,          banana,     1,          0.8
+100,    3,      3,          Kiwi,       3,          1.2
 
-101,    1,      1,          Apfel,      2,      0.5
-101,    2,      2,          Birne,      9,      1.0
+101,    1,      1,          apple,      2,          0.5
+101,    2,      2,          pear,       9,          1.0
 
-102,    1,      1,          Apfel,      1,      0.5
+102,    1,      1,          apple,      1,          0.5
 
-// TABLE Kunden
+// TABLE Customer
 
-kdnr,   nachname,   vorname
+cnr,   lastname,   firstname
 1,      Maier,      Franz
 2,      Huber,      Sepp
