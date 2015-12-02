@@ -85,22 +85,16 @@ object Db {
 
 case class Employee(firstName: String) extends Db.DbEntity[Employee] {
 
-  // this
   def reTable(stmt: Statement): Int = 0
 
   def toDb(c: Connection)(t: Employee): Int = 0
 
   def fromDb(rs: ResultSet): List[Employee] = List()
 
-
-  // this
   def dropTableSql: String = ""
 
-  // this
   def createTableSql: String = ""
 
-
-  //this
   def insertSql: String = ""
 
 }
@@ -118,20 +112,3 @@ object DbTool {
   }
 
 }
-
-
-
-
-case class Article(firstName: String) extends Db.DbEntity[Article] {
-  def toDb(c: Connection)(t: Article) : Int = ???
-  def fromDb(rs: ResultSet): List[Article] = ???
-
-  def reTable(stmt: Statement) : Int = {
-    stmt.executeUpdate(dropTableSql)
-    stmt.executeUpdate(createTableSql)
-  }
-  def dropTableSql: String = "drop table if exists article"
-  def createTableSql: String = "create table article (githubUsername string, firstName string, secondName String, groupId integer)"
-  def insertSql: String = "insert into article (githubUsername, firstName, secondName, groupId) VALUES (?, ?, ?, ?)"
-
-  }
