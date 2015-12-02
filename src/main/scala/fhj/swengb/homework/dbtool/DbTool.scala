@@ -6,6 +6,7 @@ import fhj.swengb.Person._
 import fhj.swengb.homework.dbtool.Article
 import fhj.swengb.{Person, Students}
 
+import scala.collection.mutable.ListBuffer
 import scala.util.Try
 
 /**
@@ -111,4 +112,43 @@ object DbTool {
     }
   }
 
+}
+
+case class Article(firstName: String) extends Db.DbEntity[Article] {
+  def toDb(c: Connection)(t: Article) : Int = ???
+  def fromDb(rs: ResultSet): List[Article] = ???
+
+  def reTable(stmt: Statement) : Int = {
+    stmt.executeUpdate(dropTableSql)
+    stmt.executeUpdate(createTableSql)
+  }
+  def dropTableSql: String = "drop table if exists article"
+  def createTableSql: String = "create table article (githubUsername string, firstName string, secondName String, groupId integer)"
+  def insertSql: String = "insert into article (githubUsername, firstName, secondName, groupId) VALUES (?, ?, ?, ?)"
+}
+
+
+
+case class Customer(cNr : Int, firstName: String, lastName : String) extends Db.DbEntity[Customer] {
+  def toDb(c: Connection)(cu: Customer) : Int = {
+    val pstmt = c.prepareStatement(insertSql)
+    pstmt.setInt(1, cu.cNr)
+    pstmt.setString(2, cu.firstName)
+    pstmt.setString(3, cu.lastName)
+    pstmt.executeUpdate()
+  }
+
+  def fromDb(rs: ResultSet): List[Customer] = {
+    val lb : ListBuffer[Customer] = new ListBuffer[Customer]()
+    while (rs.next()) lb.append(Customer(rs.getInt("cNr"), rs.getString("firstName"), rs.getString("lastName")))
+    lb.toList
+  }
+
+  def reTable(stmt: Statement) : Int = {
+    stmt.executeUpdate(dropTableSql)
+    stmt.executeUpdate(createTableSql)
+  }
+  def dropTableSql: String = "drop table if exists customer"
+  def createTableSql: String = "create table customer (cnr Int, firstName String, lastName String)"
+  def insertSql: String = "insert into customer (cNr, firstName, lastName) VALUES (?, ?, ?, ?)"
 }
