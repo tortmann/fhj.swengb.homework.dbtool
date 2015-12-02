@@ -2,7 +2,7 @@ package fhj.swengb.homework.dbtool
 
 import java.sql.{Connection, DriverManager, ResultSet, Statement}
 import javafx.application.Application
-import javafx.fxml.FXMLLoader
+import javafx.fxml._
 import javafx.scene.{Scene, Parent}
 import javafx.stage.Stage
 
@@ -29,12 +29,36 @@ object dbTool {
 class dbTool extends javafx.application.Application {
 
   val fxml = "/fhj/swengb/homework/dbtool/dbtool.fxml"
-  val css = "/fhj/swengb/homework/dbtool/dbtool.fxml"
+  val css = "/fhj/swengb/homework/dbtool/dbstyle.css"
 
-  val loader = new FXMLLoader(getClass.getResource(fxml))
+  val fxml2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbtool.fxml"
+  val css2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbstyle.css"
+  //val loader = new FXMLLoader(getClass.getResource(fxml))
 
+
+  def loader(fxml: String): FXMLLoader = {
+    new FXMLLoader(getClass.getResource(fxml))
+  }
 
   override def start(stage: Stage): Unit =
+    try {
+      stage.setTitle("Fruit Store - DB_Tool")
+      setSkin(stage, fxml2, css2)
+      stage.show()
+      stage.setMinWidth(stage.getWidth)
+      stage.setMinHeight(stage.getHeight)
+    } catch {
+      case NonFatal(e) => e.printStackTrace()
+    }
+
+  def setSkin(stage: Stage, fxml: String, css: String): Boolean = {
+    val scene = new Scene(loader(fxml).load[Parent]())
+    stage.setScene(scene)
+    stage.getScene.getStylesheets.clear()
+    stage.getScene.getStylesheets.add(css)
+  }
+
+  /**override def start(stage: Stage): Unit =
     try {
       stage.setTitle("Fruit Store - DB_Tool")
       loader.load[Parent]() // side effect
@@ -44,7 +68,7 @@ class dbTool extends javafx.application.Application {
       stage.show()
     } catch {
       case NonFatal(e) => e.printStackTrace()
-    }
+    }*/
 
 }
 
