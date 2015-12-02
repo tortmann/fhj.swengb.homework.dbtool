@@ -78,7 +78,7 @@ object Db {
   }
 
   lazy val maybeConnection: Try[Connection] =
-    Try(DriverManager.getConnection("jdbc:sqlite::memory:"))
+    Try(DriverManager.getConnection("jdbc:sqlite:./db_database.csv"))
 
 }
 
@@ -111,4 +111,3 @@ object DbTool {
   }
 
 }
-//test
