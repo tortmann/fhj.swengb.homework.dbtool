@@ -5,11 +5,6 @@ import javafx.application.Application
 import javafx.fxml._
 import javafx.scene.{Scene, Parent}
 import javafx.stage.Stage
-
-import fhj.swengb.Person._
-import fhj.swengb.homework.dbtool.Article
-import fhj.swengb.{Person, Students}
-
 import scala.collection.mutable.ListBuffer
 import scala.util.Try
 import scala.util.control.NonFatal
@@ -33,14 +28,15 @@ class dbTool extends javafx.application.Application {
 
   /** val fxml2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbtool.fxml"
     * val css2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbstyle.css" */
-  //val loader = new FXMLLoader(getClass.getResource(fxml))
+
+  val loader = new FXMLLoader(getClass.getResource(fxml))
 
 
-  def loader(fxml: String): FXMLLoader = {
+  /**def loader(fxml: String): FXMLLoader = {
     new FXMLLoader(getClass.getResource(fxml))
-  }
+  }*/
 
-  override def start(stage: Stage): Unit = {
+  /**override def start(stage: Stage): Unit = {
     try {
       stage.setTitle("Fruit Store - DB_Tool")
       setSkin(stage, fxml, css)
@@ -50,26 +46,26 @@ class dbTool extends javafx.application.Application {
     } catch {
       case NonFatal(e) => e.printStackTrace()
     }
-  }
+  }*/
 
   def setSkin(stage: Stage, fxml: String, css: String): Boolean = {
-    val scene = new Scene(loader(fxml).load[Parent]())
+    val scene = new Scene(loader.load[Parent]())
     stage.setScene(scene)
     stage.getScene.getStylesheets.clear()
     stage.getScene.getStylesheets.add(css)
   }
 
-  /**override def start(stage: Stage): Unit =
-    * try {
-    * stage.setTitle("Fruit Store - DB_Tool")
-    * loader.load[Parent]() // side effect
-    * val scene = new Scene(loader.getRoot[Parent])
-    * stage.setScene(scene)
-    * stage.getScene.getStylesheets.add(css)
-    * stage.show()
-    * } catch {
-    * case NonFatal(e) => e.printStackTrace()
-    * }*/
+  override def start(stage: Stage): Unit =
+    try {
+      stage.setTitle("Fruit Store - DB_Tool")
+      loader.load[Parent]() // side effect
+      val scene = new Scene(loader.getRoot[Parent])
+      stage.setScene(scene)
+      stage.getScene.getStylesheets.add(css)
+      stage.show()
+     } catch {
+      case NonFatal(e) => e.printStackTrace()
+    }
 
 }
 
@@ -148,14 +144,14 @@ object Db {
 
 object DbTool {
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]) = ??? /**{
     for {con <- Db.maybeConnection
          _ = Person.reTable(con.createStatement())
          _ = Students.sortedStudents.map(toDb(con)(_))
          s <- Person.fromDb(queryAll(con))} {
       println(s)
     }
-  }
+  }*/
 
 }
 
