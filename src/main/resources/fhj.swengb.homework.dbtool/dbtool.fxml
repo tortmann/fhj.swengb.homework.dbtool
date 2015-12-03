@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <ScrollBar orientation="VERTICAL" prefHeight="388.0" prefWidth="14.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <ProgressBar prefWidth="200.0" progress="0.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn prefWidth="97.5" text="C1" />
+          <TableColumn minWidth="0.0" prefWidth="97.5" text="C2" />
+            <TableColumn prefWidth="97.5" text="C3" />
+            <TableColumn prefWidth="97.5" text="C4" />
+            <TableColumn prefWidth="97.5" text="C5" />
+            <TableColumn prefWidth="97.5" text="C6" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="174.0" text="Button">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Button" GridPane.columnIndex="1">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="146.0" prefWidth="258.0" text="Button" GridPane.columnIndex="2">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="142.0" prefWidth="250.0" text="Button" GridPane.columnIndex="3">
+               <effect>
+                  <Glow />
+               </effect>
+            </Button>
+         </children>
+      </GridPane>
+   </top>
+</BorderPane>
