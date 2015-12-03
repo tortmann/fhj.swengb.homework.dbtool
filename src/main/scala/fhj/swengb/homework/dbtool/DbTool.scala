@@ -31,8 +31,8 @@ class dbTool extends javafx.application.Application {
   val fxml = "/fhj/swengb/homework/dbtool/dbtool.fxml"
   val css = "/fhj/swengb/homework/dbtool/dbstyle.css"
 
-  val fxml2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbtool.fxml"
-  val css2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbstyle.css"
+  /** val fxml2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbtool.fxml"
+    * val css2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbstyle.css" */
   //val loader = new FXMLLoader(getClass.getResource(fxml))
 
 
@@ -40,16 +40,17 @@ class dbTool extends javafx.application.Application {
     new FXMLLoader(getClass.getResource(fxml))
   }
 
-  override def start(stage: Stage): Unit =
+  override def start(stage: Stage): Unit = {
     try {
       stage.setTitle("Fruit Store - DB_Tool")
-      setSkin(stage, fxml2, css2)
+      setSkin(stage, fxml, css)
       stage.show()
       stage.setMinWidth(stage.getWidth)
       stage.setMinHeight(stage.getHeight)
     } catch {
       case NonFatal(e) => e.printStackTrace()
     }
+  }
 
   def setSkin(stage: Stage, fxml: String, css: String): Boolean = {
     val scene = new Scene(loader(fxml).load[Parent]())
@@ -59,16 +60,16 @@ class dbTool extends javafx.application.Application {
   }
 
   /**override def start(stage: Stage): Unit =
-    try {
-      stage.setTitle("Fruit Store - DB_Tool")
-      loader.load[Parent]() // side effect
-      val scene = new Scene(loader.getRoot[Parent])
-      stage.setScene(scene)
-      stage.getScene.getStylesheets.add(css)
-      stage.show()
-    } catch {
-      case NonFatal(e) => e.printStackTrace()
-    }*/
+    * try {
+    * stage.setTitle("Fruit Store - DB_Tool")
+    * loader.load[Parent]() // side effect
+    * val scene = new Scene(loader.getRoot[Parent])
+    * stage.setScene(scene)
+    * stage.getScene.getStylesheets.add(css)
+    * stage.show()
+    * } catch {
+    * case NonFatal(e) => e.printStackTrace()
+    * }*/
 
 }
 
@@ -159,7 +160,6 @@ object DbTool {
 }
 
 
-
 case class Article(artnr : Int, description :  String, price : Double) extends Db.DbEntity[Article] {
   def toDb(c: Connection)(a: Article) : Int = {
     val pstmt = c.prepareStatement(insertSql)
@@ -180,6 +180,7 @@ case class Article(artnr : Int, description :  String, price : Double) extends D
 
 }
 
+
 case class Customer(cnr : Int, firstname: String, lastname : String) extends Db.DbEntity[Customer] {
   def toDb(c: Connection)(cu: Customer) : Int = {
     val pstmt = c.prepareStatement(insertSql)
@@ -199,7 +200,6 @@ case class Customer(cnr : Int, firstname: String, lastname : String) extends Db.
   def createTableSql: String = "create table customer (cnr integer, firstname string, lastname string)"
   def insertSql: String = "insert into customer (cnr, firstname, lastname) VALUES (?, ?, ?, ?)"
 }
-
 
 
 case class OrderPosition(ordnr : Int, pos :  Int, article : Int, text: String,amount : Int, price: Double) extends Db.DbEntity[OrderPosition] {
