@@ -1,20 +1,17 @@
 package fhj.swengb.homework.dbtool
 
+import java.net.URL
 import java.sql.{Connection, DriverManager, ResultSet, Statement}
+import java.util.ResourceBundle
 import javafx.application.Application
 import javafx.fxml._
+import javafx.scene.control.TextField
 import javafx.scene.{Scene, Parent}
 import javafx.stage.Stage
 import scala.collection.mutable.ListBuffer
 import scala.util.Try
 import scala.util.control.NonFatal
 
-/**
-  * Example to connect to a database.
-  *
-  * Initializes the database, inserts example data and reads it again.
-  *
-  */
 object dbTool {
   def main(args: Array[String]) {
     Application.launch(classOf[dbTool], args: _*)
@@ -23,30 +20,33 @@ object dbTool {
 
 class dbTool extends javafx.application.Application {
 
-  val fxml = "/fhj/swengb/homework/dbtool/dbtool.fxml"
-  val css = "/fhj/swengb/homework/dbtool/dbstyle.css"
+  val fxml = "/resources/fhj/swengb/homework/dbtool/dbtool.fxml"
+  val css = "/resources/fhj/swengb/homework/dbtool/dbstyle.css"
 
   /** val fxml2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbtool.fxml"
     * val css2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbstyle.css" */
+
+  /**val fxml3 = "/fhj/swengb/homework/dbtool/dbtool.fxml"
+    * val css3 = "/fhj/swengb/homework/dbtool/dbstyle.css" */
 
   val loader = new FXMLLoader(getClass.getResource(fxml))
 
 
   /**def loader(fxml: String): FXMLLoader = {
-    new FXMLLoader(getClass.getResource(fxml))
-  }*/
+    * new FXMLLoader(getClass.getResource(fxml))
+    * }*/
 
   /**override def start(stage: Stage): Unit = {
-    try {
-      stage.setTitle("Fruit Store - DB_Tool")
-      setSkin(stage, fxml, css)
-      stage.show()
-      stage.setMinWidth(stage.getWidth)
-      stage.setMinHeight(stage.getHeight)
-    } catch {
-      case NonFatal(e) => e.printStackTrace()
-    }
-  }*/
+    * try {
+    * stage.setTitle("Fruit Store - DB_Tool")
+    * setSkin(stage, fxml, css)
+    * stage.show()
+    * stage.setMinWidth(stage.getWidth)
+    * stage.setMinHeight(stage.getHeight)
+    * } catch {
+    * case NonFatal(e) => e.printStackTrace()
+    * }
+    * }*/
 
   def setSkin(stage: Stage, fxml: String, css: String): Boolean = {
     val scene = new Scene(loader.load[Parent]())
@@ -67,6 +67,18 @@ class dbTool extends javafx.application.Application {
       case NonFatal(e) => e.printStackTrace()
     }
 
+}
+
+class dbtoolController extends Initializable {
+
+  @FXML var displayTextField: TextField = _
+
+  var reverseDigits: List[Int] = List()
+
+  var numbers: List[Double] = List()
+
+  /**override def initialize(location: URL, resources: ResourceBundle): Unit = {
+  }*/
 }
 
 object Db {
@@ -145,13 +157,13 @@ object Db {
 object DbTool {
 
   def main(args: Array[String]) = ??? /**{
-    for {con <- Db.maybeConnection
-         _ = Person.reTable(con.createStatement())
-         _ = Students.sortedStudents.map(toDb(con)(_))
-         s <- Person.fromDb(queryAll(con))} {
-      println(s)
-    }
-  }*/
+    * for {con <- Db.maybeConnection
+    * _ = Person.reTable(con.createStatement())
+    * _ = Students.sortedStudents.map(toDb(con)(_))
+    * s <- Person.fromDb(queryAll(con))} {
+    * println(s)
+    * }
+    * }*/
 
 }
 
