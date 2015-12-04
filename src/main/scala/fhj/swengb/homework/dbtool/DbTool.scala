@@ -20,33 +20,9 @@ object dbTool {
 
 class dbTool extends javafx.application.Application {
 
-  val fxml = "/resources/fhj/swengb/homework/dbtool/dbtool.fxml"
-  val css = "/resources/fhj/swengb/homework/dbtool/dbstyle.css"
+  val fxml = "/fhj.swengb.homework.dbtool/dbtool.fxml"
+  val css = "/fhj.swengb.homework.dbtool/dbstyle.css"
   val loader = new FXMLLoader(getClass.getResource(fxml))
-
-  /*
-  val fxml2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbtool.fxml"
-  val css2 = "/fhj.swengb.homework.dbtool/src/main/resources/fhj.swengb.homework.dbtool/dbstyle.css"
-
-  val fxml3 = "/fhj/swengb/homework/dbtool/dbtool.fxml"
-  val css3 = "/fhj/swengb/homework/dbtool/dbstyle.css"
-  */
-
-  /**def loader(fxml: String): FXMLLoader = {
-    * new FXMLLoader(getClass.getResource(fxml))
-    * }*/
-
-  /**override def start(stage: Stage): Unit = {
-    * try {
-    * stage.setTitle("Fruit Store - DB_Tool")
-    * setSkin(stage, fxml, css)
-    * stage.show()
-    * stage.setMinWidth(stage.getWidth)
-    * stage.setMinHeight(stage.getHeight)
-    * } catch {
-    * case NonFatal(e) => e.printStackTrace()
-    * }
-    * }*/
 
   def setSkin(stage: Stage, fxml: String, css: String): Boolean = {
     val scene = new Scene(loader.load[Parent]())
@@ -70,12 +46,6 @@ class dbTool extends javafx.application.Application {
 }
 
 class dbtoolController extends Initializable {
-
-  @FXML var displayTextField: TextField = _
-
-  var reverseDigits: List[Int] = List()
-
-  var numbers: List[Double] = List()
 
   override def initialize(location: URL, resources: ResourceBundle): Unit = {
   }
